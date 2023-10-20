@@ -13,12 +13,21 @@ const App = () => {
     setModal(!modal);
   }
 
+  const closeToggleModal = () => {
+    setModal(false); 
+   
+  }
+
   return (
     <div className="App">
       <HomeRoute 
         toggleModal={toggleModal}
+        closeToggleModal={closeToggleModal}
       />
-      {modal && <PhotoDetailsModal modal={modal} />} {/*short circuit opp, render the modal conditionally, if it's true return modal*/}
+      {/* {modal && <PhotoDetailsModal modal={modal} />} short circuit opp, render the modal conditionally, if it's true return modal */}
+      
+      {modal && <PhotoDetailsModal closeToggleModal={closeToggleModal} />} 
+      {/*render the modal conditionally*/}
     </div>
   );
 };
