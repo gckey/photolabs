@@ -4,7 +4,7 @@ import "../styles/PhotoList.scss";
 import photoData from "../mocks/photos.js";
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = ({ favoritedPhotos, toggleFavorite }) => {
+const PhotoList = ({ favoritedPhotos, toggleFavorite, toggleModal }) => {
 
   // mapping over an array of objects to produce an array of components.
   const photoItems = photoData.map((photo) => {
@@ -20,6 +20,7 @@ const PhotoList = ({ favoritedPhotos, toggleFavorite }) => {
         username={photo.user.username}
         city={photo.location.city}
         country={photo.location.country}
+        toggleModal={toggleModal} //pass down the func 
       />
     );
   });

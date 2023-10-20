@@ -3,7 +3,7 @@ import "../styles/HomeRoute.scss";
 import PhotoList from 'components/PhotoList';
 import TopNavigation from 'components/TopNavigationBar';
 
-const HomeRoute = () => {
+const HomeRoute = ({ toggleModal }) => {
   //Global state to track favorited photoIDs
   const [favoritedPhotos, setFavoritedPhotos] = useState([]);
 
@@ -29,6 +29,7 @@ const HomeRoute = () => {
         <PhotoList
           favoritedPhotos={favoritedPhotos}
           toggleFavorite={toggleFavorite}
+          toggleModal={toggleModal} //Pass down the func
         />
       </div>
     </>

@@ -6,8 +6,13 @@ import PhotoFavButton from "./PhotoFavButton";
 const PhotoListItem = (props) => {
   // console.log("propsPhotoListItem", props);
   /* Insert React */
+  const handleModalClick = () => {
+    props.toggleModal(); //call toggleModal func from props
+    console.log("image clicked");
+  }
+
   return (
-    <div className="photo-list__item">
+    <div className="photo-list__item" onClick={handleModalClick}>
       {/*pass down props to PhotoFavButton */}
       <PhotoFavButton
         isFavorited={props.isFavorited}
