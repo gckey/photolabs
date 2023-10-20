@@ -12,7 +12,7 @@ const PhotoList = ({ favoritedPhotos, toggleFavorite, toggleModal }) => {
     return (
       <PhotoListItem
         key={photo.id}
-        photo={photo}
+        photo={photo} //pass all the photo obj
         isFavorited={favoritedPhotos.includes(photo.id)}
         toggleFavorite={() => toggleFavorite(photo.id)}
         imageSource={photo.urls.regular}
@@ -20,7 +20,7 @@ const PhotoList = ({ favoritedPhotos, toggleFavorite, toggleModal }) => {
         username={photo.user.username}
         city={photo.location.city}
         country={photo.location.country}
-        toggleModal={toggleModal} //pass down the func 
+        toggleModal={toggleModal} //pass down the func
       />
     );
   });

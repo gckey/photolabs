@@ -7,19 +7,19 @@ const PhotoListItem = (props) => {
   // console.log("propsPhotoListItem", props);
   /* Insert React */
   const handleModalClick = () => {
-    props.toggleModal(); //call toggleModal func from props
+    props.toggleModal(props.photo); //pass all the photo obj
     console.log("image clicked");
   }
 
   return (
-    <div className="photo-list__item" onClick={handleModalClick}>
+    <div className="photo-list__item">
       {/*pass down props to PhotoFavButton */}
       <PhotoFavButton
         isFavorited={props.isFavorited}
         toggleFavorite={props.toggleFavorite}
         favoritedPhotos={props.favoritedPhotos}
       />
-      <img className="photo-list__image" src={props.imageSource} />
+      <img className="photo-list__image" src={props.imageSource} onClick={handleModalClick}/>
       <div className="photo-list__user-details">
         <img className="photo-list__user-profile" src={props.profile} />
         <div className="photo-list__user-info">
