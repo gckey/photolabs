@@ -8,13 +8,16 @@ import PhotoDetailsModal from 'routes/PhotoDetailsModal';
 const App = () => {
   //state that manages modal visibility
   const [modal, setModal] = useState(false);//false we need to see only when image is clicked i.e true
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
 
-  const toggleModal = () => {
+  const toggleModal = (selectedPhoto) => {
+    setSelectedPhoto(selectedPhoto);
     setModal(!modal);
   }
 
   const closeToggleModal = () => {
-    setModal(false); 
+    setModal(false);
+    setSelectedPhoto(null); //reset selected photo
    
   }
 
@@ -26,8 +29,10 @@ const App = () => {
       />
       {/* {modal && <PhotoDetailsModal modal={modal} />} short circuit opp, render the modal conditionally, if it's true return modal */}
       
-      {modal && <PhotoDetailsModal closeToggleModal={closeToggleModal} />} 
-      {/*render the modal conditionally*/}
+      {modal && <PhotoDetailsModal
+        photo={selectedPhoto}
+        closeToggleModal={closeToggleModal} 
+      />}{/*render the modal conditionally*/}
     </div>
   );
 };
