@@ -4,9 +4,10 @@ import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
 import photos from '../mocks/photos';
 import PhotoList from 'components/PhotoList';
+import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = (props) => {
-  const { photo, closeToggleModal } = props;
+  const { photo, closeToggleModal, favoritedPhotos, toggleFavorite, toggleModal } = props;
 
   const handleCloseModalClick = () => {
     closeToggleModal();
@@ -20,10 +21,19 @@ const PhotoDetailsModal = (props) => {
     <div className="photo-details-modal">
       <button className="photo-details-modal__close-button">
         <img src={closeSymbol} alt="close symbol"
-          onClick={handleCloseModalClick} 
+          onClick={handleCloseModalClick}
         />
       </button>
       <div className="photo-details-modal__images">
+
+      {/* render PhotoFavButton component, passing it props */}
+        <PhotoFavButton
+          // "isFavorited" is set to true if the photo.id is included in favoritedPhotos, indicating that this photo is liked by user
+          isFavorited={favoritedPhotos.includes(photo.id)} 
+          toggleFavorite={() => toggleFavorite(photo.id)}//pass func that toggles the favoriting of the current photo
+          favoritedPhotos={favoritedPhotos}
+        />
+
         <img className="photo-details-modal__image"
           src={photo.urls.full}
         />
@@ -41,10 +51,11 @@ const PhotoDetailsModal = (props) => {
         <div className="photo-details-modal__header"><h3>Similar Photos</h3></div>
       </div>
 
+      {/* render the PhotoList component, passing it the props */}
       <PhotoList
-        favoritedPhotos={[]} /*passing a prop favoritedPhotos to the PhotoList*/
-        toggleFavorite={() => { }} /*/passing props to PhotoList*/
-        toggleModal={() => { }} /*/passing props to PhotoList*/
+        favoritedPhotos={favoritedPhotos}
+        toggleFavorite={toggleFavorite}
+        toggleModal={toggleModal}
       />
     </div>
   )
