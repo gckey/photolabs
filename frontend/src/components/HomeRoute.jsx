@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import "../styles/HomeRoute.scss";
-import PhotoList from 'components/PhotoList';
-import TopNavigation from 'components/TopNavigationBar';
+import PhotoList from "components/PhotoList";
+import TopNavigation from "components/TopNavigationBar";
 
-const HomeRoute = ({ toggleModal, closeToggleModal, toggleFavorite, favoritedPhotos }) => { //pass down props to HomeRoute.jsx
-  
+const HomeRoute = ({ toggleModal, closeToggleModal, toggleFavorite, favoritedPhotos, photoData }) => { //pass down props to HomeRoute.jsx
   return (
     <>
-      <TopNavigation 
+      <TopNavigation
         favoritedCount={favoritedPhotos.length}
       />
       <div className="home-route">
         <PhotoList
+          photoData={photoData}
           favoritedPhotos={favoritedPhotos}
           toggleFavorite={toggleFavorite}
           toggleModal={toggleModal} //Pass down the func
