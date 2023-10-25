@@ -1,10 +1,9 @@
 import React from "react";
 
 import "../styles/PhotoList.scss";
-import photoData from "../mocks/photos.js";
 import PhotoListItem from "./PhotoListItem";
 
-const PhotoList = ({ favoritedPhotos, toggleFavorite, toggleModal }) => {
+const PhotoList = ({ favoritedPhotos, toggleFavorite, toggleModal, photoData }) => {
 
   // mapping over an array of objects to produce an array of components.
   const photoItems = photoData.map((photo) => {
