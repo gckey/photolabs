@@ -22,3 +22,18 @@ Read `backend/readme` for further setup details.
 cd backend
 npm start
 ```
+
+## Screenshots
+
+![Screenshot of displaying photo data](docs/reactPng52.png)
+![Screenshot of modal window](docs/reactPng53.png)
+
+## Dependencies
+
+- React version 18.2
+- Express
+- Node.js 12.22 or above
+- Body-parser
+- Cors
+- PSQL version 8.5
+- Dotenv
