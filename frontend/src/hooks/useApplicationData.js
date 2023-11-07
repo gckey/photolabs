@@ -7,7 +7,8 @@ export const ACTIONS = {
   SET_PHOTO_DATA: "SET_PHOTO_DATA",
   SET_TOPIC_DATA: "SET_TOPIC_DATA",
   SELECT_PHOTO: "SELECT_PHOTO",
-  DISPLAY_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS"
+  DISPLAY_PHOTO_DETAILS: "DISPLAY_PHOTO_DETAILS",
+  SET_PHOTOS_BY_TOPIC: "SET_PHOTOS_BY_TOPIC"
 }
 
 const initialState = {
@@ -15,21 +16,26 @@ const initialState = {
   selectedPhoto: null,
   modal: false, 
   photoData: [],
-  topicData: []
+  topicData: [],
+  photosByTopic: {},
 };
 
 const useApplicationData = () => {
   useEffect(() => {
     fetch("/api/photos")
       .then((response) => response.json())
-      .then((data) => // console.log(data); // Log the response
-        dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data })); // Dispatch the photo data to state
+      .then((data) => { 
+        // console.log(data); // Log the response
+      return dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }); // Dispatch the photo data to state
+      });
   }, []); // Empty dependency array means this effect runs once on component mount
 
   useEffect(() => {
     fetch("/api/topics")
       .then((response) => response.json())
-      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
+      .then((data) => {
+      return dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data });
+      });
   }, []);
 
 function reducer(state, action) {
@@ -68,6 +74,11 @@ function reducer(state, action) {
         ...state, 
         topicData: action.payload 
     };
+    case ACTIONS.SET_PHOTOS_BY_TOPIC:
+      return {
+        ...state,
+        photoData: action.payload.photos
+      };
   default:
       throw new Error(`Tried to reduce with unsupported action type: ${action.type}`);
   }
@@ -94,12 +105,31 @@ function reducer(state, action) {
       payload: { id: photoId }
   });
 };
+//function to fetch photos by topic
+const fetchPhotosByTopic = async (topicId) => {
+  console.log('fetch photo', topicId);
+  try {
+    const response = await fetch(`/api/topics/photos/${topicId}`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log('photoData', data);
+    // return dispatch({ type: ACTIONS.SET_PHOTOS_BY_TOPIC, payload: { topicId, photos: data } });
+
+    return dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data });
+
+  } catch (error) {
+    console.error("Error fetching photos by topic:", error);
+  }
+};
 
   return {
     state,
     toggleModal,
     closeToggleModal,
-    toggleFavorite
+    toggleFavorite,
+    fetchPhotosByTopic,
   };
 };
 
