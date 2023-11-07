@@ -1,10 +1,9 @@
 import React from "react";
 
 import "../styles/TopicList.scss";
-import topicData from "../mocks/topics.js";
 import TopicListItem from "./TopicListItem";
 
-const TopicList = () => {
+const TopicList = ({ topicData, fetchPhotosByTopic } ) => {
   const topicItems = topicData.map((item) => {
     return (
       <TopicListItem
@@ -12,6 +11,7 @@ const TopicList = () => {
         id={item.id}
         slug={item.slug}
         title={item.title}
+        fetchPhotosByTopic={fetchPhotosByTopic}
       />
     );
 
