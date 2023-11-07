@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import "../styles/HomeRoute.scss";
 import PhotoList from "components/PhotoList";
 import TopNavigation from "components/TopNavigationBar";
+import TopicList from "./TopicList";
 
-const HomeRoute = ({ toggleModal, closeToggleModal, toggleFavorite, favoritedPhotos, photoData }) => { //pass down props to HomeRoute.jsx
+const HomeRoute = ({ toggleModal, closeToggleModal, toggleFavorite, favoritedPhotos, photoData, fetchPhotosByTopic, topicData }) => { //pass down props to HomeRoute.jsx
   return (
     <>
       <TopNavigation
         favoritedCount={favoritedPhotos.length}
+        fetchPhotosByTopic={fetchPhotosByTopic}
+        topicData={topicData}
       />
       <div className="home-route">
         <PhotoList
