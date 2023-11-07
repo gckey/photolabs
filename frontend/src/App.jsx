@@ -12,6 +12,7 @@ const App = () => {
     toggleModal,
     closeToggleModal,
     toggleFavorite,
+    fetchPhotosByTopic,
   } = useApplicationData();
 
   return (
@@ -21,8 +22,9 @@ const App = () => {
         closeToggleModal={closeToggleModal} //func passed down to HomeRoute
         favoritedPhotos={state.favoritedPhotos}//array of favorited photo IDs passed down to HomeRoute.jsx
         photoData={state.photoData}
-        topics={state.topicsData}
+        topicData={state.topicData}
         toggleFavorite={toggleFavorite}//func passed down to HomeRoute
+        fetchPhotosByTopic={fetchPhotosByTopic}
       />
       {/* {modal && <PhotoDetailsModal modal={modal} />} short circuit opp, render the modal conditionally, if it's true return modal */}
 
