@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "proxy": "http://localhost:8001",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -36,6 +37,6 @@
     ]
   },
   "devDependencies": {
-    "sass": "^1.59.2"
+    "sass": "^1.58.3"
   }
 }
